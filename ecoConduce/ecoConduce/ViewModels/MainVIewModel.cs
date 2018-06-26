@@ -1,15 +1,29 @@
 ﻿namespace ecoConduce.ViewModels
 {
-    class MainViewModel
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    public class MainViewModel
     {
-        #region ViewModels
-        public PrincipalViewModel principal { get; set; }
+        #region viewModels
+        public PrincipalViewModel Principal
+        {
+            get;
+            set;
+        }
+
+        public ScootersViewModel Scooters
+        {
+            get;
+            set;
+        }
         #endregion
-        #region Constructores
+
+        #region constructors
         public MainViewModel()
         {
             instance = this;
-            this.principal = new PrincipalViewModel();
+            this.Principal = new PrincipalViewModel();
         }
         #endregion
 

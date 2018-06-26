@@ -1,7 +1,10 @@
-﻿namespace ecoConduce.InfraStructure
+﻿namespace ecoConduce.Infrastructure
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
     using ViewModels;
-    class InstanceLocator
+    public class InstanceLocator
     {
         #region properties
         public MainViewModel Main
