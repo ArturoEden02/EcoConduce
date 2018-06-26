@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BindingContext="{Binding Main,Source={StaticResource Locator}}"
+             x:Class="ecoConduce.Views.Principal" Title="Principal">
+    <ContentPage.Content>
+        <ScrollView BindingContext="{Binding Track}">
+            <StackLayout Padding="5">
+                <Grid VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Latitude" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" TextColor="Black"/>
+                    <Entry  Placeholder="Enter your latitude..." Grid.Row="0" Grid.Column="1" Text="{Binding Latitude,Mode=TwoWay}"/>
+                    <Label Text="Longitude" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" TextColor="Black"/>
+                    <Entry  Placeholder="Enter your longitude..." Grid.Row="1" Grid.Column="1" Text="{Binding Longitude,Mode=TwoWay}"/>
+                </Grid>
+                <StackLayout Margin="40,0" Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                    <Button Text="Track" BackgroundColor="Navy" TextColor="White" BorderRadius="23" HeightRequest="46"  HorizontalOptions="FillAndExpand"
+                            Command="{Binding TrackCommand}" IsEnabled="{Binding IsEnabled,Mode=TwoWay}"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
