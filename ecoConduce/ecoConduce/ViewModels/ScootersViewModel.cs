@@ -4,6 +4,7 @@ namespace ecoConduce.ViewModels
     using ecoConduce.Models;
     using ecoConduce.Services;
     using GalaSoft.MvvmLight.Command;
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
@@ -19,6 +20,7 @@ namespace ecoConduce.ViewModels
         #region attributes
         private ObservableCollection<Scooter> scooters;
         private bool isRefreshing;
+        private string order;
         #endregion
 
         #region properties
@@ -32,6 +34,12 @@ namespace ecoConduce.ViewModels
         {
             get { return this.isRefreshing; }
             set { SetValue(ref this.isRefreshing, value); }
+        }
+
+        public string Order
+        {
+            get { return this.order; }
+            set { SetValue(ref this.order, value); }
         }
         #endregion
 
@@ -71,7 +79,14 @@ namespace ecoConduce.ViewModels
             }
             var list = (List<Scooter>)response.Result;
             this.Scooters = new ObservableCollection<Scooter>(list);
+            this.Order = "Order by range";
             this.IsRefreshing = false;
+        }
+
+
+        private void OrderBy()
+        {
+            
         }
 
         #endregion
@@ -84,6 +99,15 @@ namespace ecoConduce.ViewModels
                 return new RelayCommand(LoadScooters);
             }
         }
+
+        public ICommand OrderCommand
+        {
+            get
+            {
+                return new RelayCommand(OrderBy);
+            }
+        }
+
         #endregion
     }
 }

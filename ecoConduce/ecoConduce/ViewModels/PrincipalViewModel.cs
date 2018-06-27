@@ -75,8 +75,6 @@
         public PrincipalViewModel()
         {
             this.IsEnabled = true;
-            this.Latitude = "19.3901384";
-            this.Longitude = "-99.1663497";
         }
         #endregion
 

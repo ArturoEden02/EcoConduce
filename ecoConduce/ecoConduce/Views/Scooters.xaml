@@ -5,6 +5,7 @@
              x:Class="ecoConduce.Views.Scooters" Title="Scooters">
     <ContentPage.Content>
         <StackLayout Padding="5" BindingContext="{Binding Scooters}">
+            <Button Text="{Binding Order,Mode=TwoWay}" BackgroundColor="BlueViolet" TextColor="White" BorderRadius="23" HeightRequest="46" HorizontalOptions="FillAndExpand" Command="{Binding OrderCommand}"/>
             <ListView 
                 HasUnevenRows="True"
                 IsPullToRefreshEnabled="True"
