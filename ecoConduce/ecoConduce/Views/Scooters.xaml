@@ -5,7 +5,7 @@
              x:Class="ecoConduce.Views.Scooters" Title="Scooters">
     <ContentPage.Content>
         <StackLayout Padding="5" BindingContext="{Binding Scooters}">
-            <Button Text="{Binding Order,Mode=TwoWay}" BackgroundColor="BlueViolet" TextColor="White" BorderRadius="23" HeightRequest="46" HorizontalOptions="FillAndExpand" Command="{Binding OrderCommand}"/>
+            <Button Text="{Binding Order,Mode=TwoWay}" BackgroundColor="CornflowerBlue" TextColor="White" BorderRadius="23" HeightRequest="46" HorizontalOptions="FillAndExpand" Command="{Binding OrderCommand}"/>
             <ListView 
                 HasUnevenRows="True"
                 IsPullToRefreshEnabled="True"
@@ -28,12 +28,22 @@
                                     <StackLayout
                                     Grid.Column="0"
                                     VerticalOptions="Center">
-                                        <Label FontAttributes="Bold"
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                            <Label FontAttributes="Bold"
+                                           FontSize="Medium"
+                                           Text="Scooter ID: "
+                                           TextColor="Black"/>
+                                            <Label FontAttributes="Bold"
                                            FontSize="Medium"
                                            Text="{Binding Properties.Id}"
                                            TextColor="Black"/>
-                                        <Label Text="{Binding Type}"
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                            <Label Text="Scooter Type: "
                                            TextColor="Black"/>
+                                            <Label Text="{Binding Type}"
+                                           TextColor="Black"/>
+                                        </StackLayout>
                                     </StackLayout>
                                     <Image Grid.Column="1"
                                        Source="ic_chevron_right"/>
