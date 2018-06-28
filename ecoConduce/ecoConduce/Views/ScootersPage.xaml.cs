@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace ecoConduce.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Scooters : ContentPage
+	public partial class ScootersPage : ContentPage
 	{
-		public Scooters ()
+		public ScootersPage ()
 		{
 			InitializeComponent ();
 		}

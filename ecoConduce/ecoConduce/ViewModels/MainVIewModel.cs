@@ -17,6 +17,12 @@
             get;
             set;
         }
+
+        public ScooterViewModel Scooter
+        {
+            get;
+            set;
+        }
         #endregion
 
         #region constructors

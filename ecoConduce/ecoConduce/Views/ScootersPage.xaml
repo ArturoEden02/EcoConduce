@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
-             x:Class="ecoConduce.Views.Scooters" Title="Scooters">
+             x:Class="ecoConduce.Views.ScootersPage" Title="Scooters">
     <ContentPage.Content>
         <StackLayout Padding="5" BindingContext="{Binding Scooters}">
             <Button Text="{Binding Order,Mode=TwoWay}" BackgroundColor="CornflowerBlue" TextColor="White" BorderRadius="23" HeightRequest="46" HorizontalOptions="FillAndExpand" Command="{Binding OrderCommand}"/>
@@ -20,6 +20,9 @@
                                 CornerRadius="20"
                                 HasShadow="True"
                                 Margin="5">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectScooterCommand}"/>
+                                </Frame.GestureRecognizers>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -39,9 +42,15 @@
                                            TextColor="Black"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                            <Label Text="Scooter Type: "
+                                            <Label Text="Scooter Distance: "
                                            TextColor="Black"/>
-                                            <Label Text="{Binding Type}"
+                                            <Label Text="{Binding Properties.Distance}"
+                                           TextColor="Black"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                            <Label Text="Scooter Range: "
+                                           TextColor="Black"/>
+                                            <Label Text="{Binding Properties.Range}"
                                            TextColor="Black"/>
                                         </StackLayout>
                                     </StackLayout>

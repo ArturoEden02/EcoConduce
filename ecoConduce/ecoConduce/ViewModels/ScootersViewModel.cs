@@ -19,14 +19,15 @@ namespace ecoConduce.ViewModels
         #endregion
 
         #region attributes
-        private ObservableCollection<Scooter> scooters;
+        private ObservableCollection<ScooterItemViewModel> scooters;
+        private List<Scooter> scooterList;
         private bool isRefreshing;
         private string order;
-        private ObservableCollection<Scooter> resp;
+        private ObservableCollection<ScooterItemViewModel> resp;
         #endregion
 
         #region properties
-        public ObservableCollection<Scooter> Scooters
+        public ObservableCollection<ScooterItemViewModel> Scooters
         {
             get { return this.scooters; }
             set { SetValue(ref this.scooters, value); }
@@ -44,7 +45,7 @@ namespace ecoConduce.ViewModels
             set { SetValue(ref this.order, value); }
         }
 
-        public ObservableCollection<Scooter> Resp
+        public ObservableCollection<ScooterItemViewModel> Resp
         {
             get { return this.resp; }
             set { SetValue(ref this.resp, value); }
@@ -85,13 +86,15 @@ namespace ecoConduce.ViewModels
                 await Application.Current.MainPage.Navigation.PopAsync();
                 return;
             }
-            var list = (List<Scooter>)response.Result;
-            this.Scooters = new ObservableCollection<Scooter>(list);
-            var listOrder = from scoo in this.Scooters
-                            orderby scoo.Properties.Distance ascending
-                            select scoo;
-            this.Scooters = new ObservableCollection<Scooter>(listOrder);
-            this.Order = "Order by distance";
+            this.scooterList = (List<Scooter>)response.Result;
+            var orderBy = from scoo in this.scooterList
+                          orderby scoo.Properties.Distance ascending
+                          orderby scoo.Properties.Range descending
+                          where scoo.Type == "free_float"
+                          select scoo;
+            this.scooterList = orderBy.ToList();
+            this.Scooters = new ObservableCollection<ScooterItemViewModel>(this.ToLanItemViewModel());
+            this.Order = "See Parked Scooters";
             this.IsRefreshing = false;
         }
 
@@ -99,19 +102,22 @@ namespace ecoConduce.ViewModels
         private void OrderBy()
         {
             this.IsRefreshing = true;
-            if (this.Order == "Order by distance")
+            if (this.Order == "See Parked Scooters")
             {
                 this.Resp = this.Scooters;
-                var list = from scooter in Scooters
-                           orderby scooter.Properties.Range descending
-                           select scooter;
-                this.Scooters = new ObservableCollection<Scooter>(list);
-                this.Order = "Order by range";
+                var orderBy = from scoo in this.scooterList
+                              orderby scoo.Properties.Distance ascending
+                              orderby scoo.Properties.Range descending
+                              where scoo.Type != "free_float"
+                              select scoo;
+                this.scooterList = orderBy.ToList();
+                this.Scooters = new ObservableCollection<ScooterItemViewModel>(this.ToLanItemViewModel());
+                this.Order = "See Free Float Scooters";
                 this.IsRefreshing = false;
                 return;
             }
             this.Scooters = this.Resp;
-            this.Order = "Order by distance";
+            this.Order = "See Parked Scooters";
             this.IsRefreshing = false;
         }
 
@@ -134,6 +140,18 @@ namespace ecoConduce.ViewModels
             }
         }
 
+        #endregion
+
+        #region Methods
+        private IEnumerable<ScooterItemViewModel> ToLanItemViewModel()
+        {
+            return this.scooterList.Select(l => new ScooterItemViewModel
+            {
+                Type = l.Type,
+                Properties = l.Properties,
+                Geometry = l.Geometry,
+            });
+        }
         #endregion
     }
 }

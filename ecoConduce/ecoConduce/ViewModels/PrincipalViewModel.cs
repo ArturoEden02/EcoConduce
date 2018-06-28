@@ -109,7 +109,7 @@
             }
 
             MainViewModel.GetInstance().Scooters = new ScootersViewModel(this.Latitude, this.Longitude);
-            await Application.Current.MainPage.Navigation.PushAsync(new Scooters());
+            await Application.Current.MainPage.Navigation.PushAsync(new ScootersPage());
         }
 
         #endregion

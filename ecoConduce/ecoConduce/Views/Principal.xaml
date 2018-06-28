@@ -12,9 +12,9 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Label Text="Latitude" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" TextColor="Black"/>
-                    <Entry  Placeholder="Enter your latitude..." Grid.Row="0" Grid.Column="1" Text="{Binding Latitude,Mode=TwoWay}"/>
+                    <Entry  Placeholder="Enter your latitude..." Grid.Row="0" Grid.Column="1" Text="{Binding Latitude,Mode=TwoWay}" Keyboard="Numeric"/>
                     <Label Text="Longitude" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" TextColor="Black"/>
-                    <Entry  Placeholder="Enter your longitude..." Grid.Row="1" Grid.Column="1" Text="{Binding Longitude,Mode=TwoWay}"/>
+                    <Entry  Placeholder="Enter your longitude..." Grid.Row="1" Grid.Column="1" Text="{Binding Longitude,Mode=TwoWay}" Keyboard="Numeric"/>
                 </Grid>
                 <StackLayout Margin="40,0" Orientation="Horizontal" VerticalOptions="CenterAndExpand">
                     <Button Text="Track" BackgroundColor="CornflowerBlue" TextColor="White" BorderRadius="23" HeightRequest="46"  HorizontalOptions="FillAndExpand"
