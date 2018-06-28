@@ -132,6 +132,7 @@ namespace ecoConduce.ViewModels
         #endregion
 
         #region commands
+
         public ICommand RefreshCommand
         {
             get
@@ -151,6 +152,7 @@ namespace ecoConduce.ViewModels
         #endregion
 
         #region Methods
+
         private IEnumerable<ScooterItemViewModel> ToLanItemViewModel()
         {
             return this.scooterList.Select(l => new ScooterItemViewModel
@@ -160,6 +162,7 @@ namespace ecoConduce.ViewModels
                 Geometry = l.Geometry,
             });
         }
+
         #endregion
     }
 }
