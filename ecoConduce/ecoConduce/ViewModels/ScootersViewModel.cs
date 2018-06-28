@@ -4,7 +4,7 @@ namespace ecoConduce.ViewModels
     using ecoConduce.Models;
     using ecoConduce.Services;
     using GalaSoft.MvvmLight.Command;
-    using System;
+    using System.Linq;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
@@ -87,6 +87,10 @@ namespace ecoConduce.ViewModels
             }
             var list = (List<Scooter>)response.Result;
             this.Scooters = new ObservableCollection<Scooter>(list);
+            var listOrder = from scoo in this.Scooters
+                            orderby scoo.Properties.Distance ascending
+                            select scoo;
+            this.Scooters = new ObservableCollection<Scooter>(listOrder);
             this.Order = "Order by range";
             this.IsRefreshing = false;
         }
@@ -94,14 +98,21 @@ namespace ecoConduce.ViewModels
 
         private void OrderBy()
         {
+            this.IsRefreshing = true;
             if (this.Order == "Order by range")
             {
                 this.Resp = this.Scooters;
-
+                var list = from scooter in Scooters
+                           orderby scooter.Properties.Range descending
+                           select scooter;
+                this.Scooters = new ObservableCollection<Scooter>(list);
                 this.Order = "Order by distance";
+                this.IsRefreshing = false;
+                return;
             }
             this.Scooters = this.Resp;
             this.Order = "Order by range";
+            this.IsRefreshing = false;
         }
 
         #endregion
