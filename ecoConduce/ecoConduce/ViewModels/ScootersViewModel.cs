@@ -23,7 +23,7 @@ namespace ecoConduce.ViewModels
         private List<Scooter> scooterList;
         private bool isRefreshing;
         private string order;
-        private ObservableCollection<ScooterItemViewModel> resp;
+        private List<Scooter> resp;
         #endregion
 
         #region properties
@@ -45,7 +45,7 @@ namespace ecoConduce.ViewModels
             set { SetValue(ref this.order, value); }
         }
 
-        public ObservableCollection<ScooterItemViewModel> Resp
+        public List<Scooter> Resp
         {
             get { return this.resp; }
             set { SetValue(ref this.resp, value); }
@@ -87,6 +87,7 @@ namespace ecoConduce.ViewModels
                 return;
             }
             this.scooterList = (List<Scooter>)response.Result;
+            this.Resp = this.scooterList;
             var orderBy = from scoo in this.scooterList
                           orderby scoo.Properties.Distance ascending
                           orderby scoo.Properties.Range descending
@@ -104,19 +105,26 @@ namespace ecoConduce.ViewModels
             this.IsRefreshing = true;
             if (this.Order == "See Parked Scooters")
             {
-                this.Resp = this.Scooters;
-                var orderBy = from scoo in this.scooterList
-                              orderby scoo.Properties.Distance ascending
-                              orderby scoo.Properties.Range descending
-                              where scoo.Type != "free_float"
-                              select scoo;
-                this.scooterList = orderBy.ToList();
+                this.scooterList = this.Resp;
+                var orderByP = from scoo in this.scooterList
+                               orderby scoo.Properties.Distance ascending
+                               orderby scoo.Properties.Range descending
+                               where scoo.Type != "free_float"
+                               select scoo;
+                this.scooterList = orderByP.ToList();
                 this.Scooters = new ObservableCollection<ScooterItemViewModel>(this.ToLanItemViewModel());
                 this.Order = "See Free Float Scooters";
                 this.IsRefreshing = false;
                 return;
             }
-            this.Scooters = this.Resp;
+            this.scooterList = this.Resp;
+            var orderBy = from scoo in this.scooterList
+                          orderby scoo.Properties.Distance ascending
+                          orderby scoo.Properties.Range descending
+                          where scoo.Type == "free_float"
+                          select scoo;
+            this.scooterList = orderBy.ToList();
+            this.Scooters = new ObservableCollection<ScooterItemViewModel>(this.ToLanItemViewModel());
             this.Order = "See Parked Scooters";
             this.IsRefreshing = false;
         }
