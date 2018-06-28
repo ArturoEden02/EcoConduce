@@ -17,10 +17,12 @@ namespace ecoConduce.ViewModels
         private string latitud;
         private string longitud;
         #endregion
+
         #region attributes
         private ObservableCollection<Scooter> scooters;
         private bool isRefreshing;
         private string order;
+        private ObservableCollection<Scooter> resp;
         #endregion
 
         #region properties
@@ -40,6 +42,12 @@ namespace ecoConduce.ViewModels
         {
             get { return this.order; }
             set { SetValue(ref this.order, value); }
+        }
+
+        public ObservableCollection<Scooter> Resp
+        {
+            get { return this.resp; }
+            set { SetValue(ref this.resp, value); }
         }
         #endregion
 
@@ -86,7 +94,14 @@ namespace ecoConduce.ViewModels
 
         private void OrderBy()
         {
-            
+            if (this.Order == "Order by range")
+            {
+                this.Resp = this.Scooters;
+
+                this.Order = "Order by distance";
+            }
+            this.Scooters = this.Resp;
+            this.Order = "Order by range";
         }
 
         #endregion
