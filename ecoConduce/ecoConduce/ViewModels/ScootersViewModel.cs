@@ -91,7 +91,7 @@ namespace ecoConduce.ViewModels
                             orderby scoo.Properties.Distance ascending
                             select scoo;
             this.Scooters = new ObservableCollection<Scooter>(listOrder);
-            this.Order = "Order by range";
+            this.Order = "Order by distance";
             this.IsRefreshing = false;
         }
 
@@ -99,19 +99,19 @@ namespace ecoConduce.ViewModels
         private void OrderBy()
         {
             this.IsRefreshing = true;
-            if (this.Order == "Order by range")
+            if (this.Order == "Order by distance")
             {
                 this.Resp = this.Scooters;
                 var list = from scooter in Scooters
                            orderby scooter.Properties.Range descending
                            select scooter;
                 this.Scooters = new ObservableCollection<Scooter>(list);
-                this.Order = "Order by distance";
+                this.Order = "Order by range";
                 this.IsRefreshing = false;
                 return;
             }
             this.Scooters = this.Resp;
-            this.Order = "Order by range";
+            this.Order = "Order by distance";
             this.IsRefreshing = false;
         }
 
