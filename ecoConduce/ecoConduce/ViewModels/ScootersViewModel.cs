@@ -86,6 +86,21 @@ namespace ecoConduce.ViewModels
                 await Application.Current.MainPage.Navigation.PopAsync();
                 return;
             }
+            if (!string.IsNullOrEmpty(this.Order) && this.Order != "See Parked Scooters")
+            {
+                this.scooterList = (List<Scooter>)response.Result;
+                this.Resp = this.scooterList;
+                var orderByP = from scoo in this.scooterList
+                               orderby scoo.Properties.Distance ascending
+                               orderby scoo.Properties.Range descending
+                               where scoo.Type != "free_float"
+                               select scoo;
+                this.scooterList = orderByP.ToList();
+                this.Scooters = new ObservableCollection<ScooterItemViewModel>(this.ToLanItemViewModel());
+                this.Order = "See Free Float Scooters";
+                this.IsRefreshing = false;
+                return;
+            }
             this.scooterList = (List<Scooter>)response.Result;
             this.Resp = this.scooterList;
             var orderBy = from scoo in this.scooterList
