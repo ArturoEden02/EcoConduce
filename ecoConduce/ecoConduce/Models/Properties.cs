@@ -3,6 +3,9 @@
     using Newtonsoft.Json;
     public class Properties
     {
+
+        #region Properties
+
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
 
@@ -26,5 +29,7 @@
 
         [JsonProperty(PropertyName = "charging_enabled")]
         public bool ChargingEnabled { get; set; }
+
+        #endregion
     }
 }

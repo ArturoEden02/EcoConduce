@@ -2,12 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               BindingContext="{Binding Main,Source={StaticResource Locator}}"
-             x:Class="ecoConduce.Views.ScooterPage" Title="Scooter">
+             x:Class="ecoConduce.Views.ScooterPage" 
+             Title="Scooter">
     <ContentPage.Content>
         <StackLayout>
-            <ScrollView BindingContext="{Binding Scooter}">
-                <StackLayout Padding="5">
-                    <Label FontSize="Large" FontAttributes="Bold" Text="Scooter Data" TextColor="Black" HorizontalOptions="Center"/>
+            <ScrollView 
+                BindingContext="{Binding Scooter}">
+                <StackLayout 
+                    Padding="5">
+                    <Label 
+                        FontSize="Large" 
+                        FontAttributes="Bold" 
+                        Text="Scooter Data" 
+                        TextColor="Black" 
+                        HorizontalOptions="Center"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>

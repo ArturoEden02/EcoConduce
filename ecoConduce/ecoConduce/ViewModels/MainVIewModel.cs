@@ -1,11 +1,10 @@
 ﻿namespace ecoConduce.ViewModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+
     public class MainViewModel
     {
-        #region viewModels
+        #region ViewModels
+
         public PrincipalViewModel Principal
         {
             get;
@@ -23,18 +22,23 @@
             get;
             set;
         }
+
         #endregion
 
-        #region constructors
+        #region Constructors
+
         public MainViewModel()
         {
             instance = this;
             this.Principal = new PrincipalViewModel();
         }
+
         #endregion
 
         #region Singleton
+
         private static MainViewModel instance;
+
         public static MainViewModel GetInstance()
         {
             if (instance == null)
@@ -43,6 +47,7 @@
             }
             return instance;
         }
+
         #endregion
     }
 }

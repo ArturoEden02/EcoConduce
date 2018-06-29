@@ -5,7 +5,11 @@
 
     public class Geometry
     {
+        #region Properties
+
         [JsonProperty(PropertyName = "coordinates")]
         public List<double> Coordinates { get; set; }
+
+        #endregion
     }
 }

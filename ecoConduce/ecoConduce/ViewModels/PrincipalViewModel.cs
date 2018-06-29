@@ -8,11 +8,13 @@
 
     public class PrincipalViewModel : INotifyPropertyChanged
     {
-        #region events
+        #region Events
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         #endregion
 
-        #region attributes
+        #region Attributes
 
         public string latitude { get; set; }
         private string longitude { get; set; }
@@ -20,7 +22,8 @@
 
         #endregion
 
-        #region properties
+        #region Properties
+
         public string Latitude
         {
             get
@@ -37,6 +40,7 @@
                 }
             }
         }
+
         public string Longitude
         {
             get
@@ -53,6 +57,7 @@
                 }
             }
         }
+
         public bool IsEnabled
         {
             get
@@ -69,16 +74,20 @@
                 }
             }
         }
+
         #endregion
 
-        #region constructors
+        #region Constructors
+
         public PrincipalViewModel()
         {
             this.IsEnabled = true;
         }
+
         #endregion
 
         #region Commands
+
         public ICommand TrackCommand
         {
             get
@@ -89,7 +98,7 @@
 
         #endregion
 
-        #region methods
+        #region Methods
 
         private async void Track()
         {

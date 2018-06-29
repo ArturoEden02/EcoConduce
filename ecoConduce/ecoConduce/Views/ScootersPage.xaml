@@ -2,10 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
-             x:Class="ecoConduce.Views.ScootersPage" Title="Scooters">
+             x:Class="ecoConduce.Views.ScootersPage" 
+             Title="Scooters">
     <ContentPage.Content>
-        <StackLayout Padding="5" BindingContext="{Binding Scooters}">
-            <Button Text="{Binding Order,Mode=TwoWay}" BackgroundColor="CornflowerBlue" TextColor="White" BorderRadius="23" HeightRequest="46" HorizontalOptions="FillAndExpand" Command="{Binding OrderCommand}"/>
+        <StackLayout 
+            Padding="5" 
+            BindingContext="{Binding Scooters}">
+            <Button 
+                Text="{Binding Order,Mode=TwoWay}" 
+                BackgroundColor="CornflowerBlue" 
+                TextColor="White" 
+                BorderRadius="23" 
+                HeightRequest="46" 
+                HorizontalOptions="FillAndExpand" 
+                Command="{Binding OrderCommand}"/>
             <ListView 
                 HasUnevenRows="True"
                 IsPullToRefreshEnabled="True"
@@ -28,34 +38,47 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <StackLayout
-                                    Grid.Column="0"
-                                    VerticalOptions="Center">
-                                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                            <Label FontAttributes="Bold"
-                                           FontSize="Medium"
-                                           Text="Scooter ID: "
-                                           TextColor="Black"/>
-                                            <Label FontAttributes="Bold"
-                                           FontSize="Medium"
-                                           Text="{Binding Properties.Id}"
-                                           TextColor="Black"/>
+                                    <StackLayout 
+                                        Grid.Column="0"
+                                        VerticalOptions="Center">
+                                        <StackLayout 
+                                            Orientation="Horizontal" 
+                                            VerticalOptions="CenterAndExpand">
+                                            <Label 
+                                                FontAttributes="Bold"
+                                                FontSize="Medium"
+                                                Text="Scooter ID: "
+                                                TextColor="Black"/>
+                                            <Label 
+                                                FontAttributes="Bold"
+                                                FontSize="Medium"
+                                                Text="{Binding Properties.Id}"
+                                                TextColor="Black"/>
                                         </StackLayout>
-                                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                            <Label Text="Scooter Distance: "
-                                           TextColor="Black"/>
-                                            <Label Text="{Binding Properties.Distance}"
-                                           TextColor="Black"/>
+                                        <StackLayout 
+                                            Orientation="Horizontal" 
+                                            VerticalOptions="CenterAndExpand">
+                                            <Label 
+                                                Text="Scooter Distance: "
+                                                TextColor="Black"/>
+                                            <Label 
+                                                Text="{Binding Properties.Distance}"
+                                                TextColor="Black"/>
                                         </StackLayout>
-                                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                            <Label Text="Scooter Range: "
-                                           TextColor="Black"/>
-                                            <Label Text="{Binding Properties.Range}"
-                                           TextColor="Black"/>
+                                        <StackLayout 
+                                            Orientation="Horizontal" 
+                                            VerticalOptions="CenterAndExpand">
+                                            <Label 
+                                                Text="Scooter Range: "
+                                                TextColor="Black"/>
+                                            <Label 
+                                                Text="{Binding Properties.Range}"
+                                                TextColor="Black"/>
                                         </StackLayout>
                                     </StackLayout>
-                                    <Image Grid.Column="1"
-                                       Source="ic_chevron_right"/>
+                                    <Image 
+                                        Grid.Column="1"
+                                        Source="ic_chevron_right"/>
                                 </Grid>
                             </Frame>
                         </ViewCell>

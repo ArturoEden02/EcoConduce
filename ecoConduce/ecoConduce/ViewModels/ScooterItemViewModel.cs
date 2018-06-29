@@ -8,7 +8,8 @@
 
     public class ScooterItemViewModel : Scooter
     {
-        #region commands
+        #region Commands
+
         public ICommand SelectScooterCommand
         {
             get
@@ -22,6 +23,7 @@
             MainViewModel.GetInstance().Scooter = new ScooterViewModel(this);
             await Application.Current.MainPage.Navigation.PushAsync(new ScooterPage());
         }
+
         #endregion
     }
 }

@@ -1,10 +1,11 @@
 ﻿namespace ecoConduce.Models
 {
-    using System;
+
     using Newtonsoft.Json;
+
     public class TokenResponse
     {
-        #region properties
+        #region Properties
 
         [JsonProperty(PropertyName = "access_token")]
         public string AccessToken { get; set; }

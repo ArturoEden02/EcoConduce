@@ -4,6 +4,8 @@
 
     public class Scooter
     {
+        #region Properties
+
         [JsonProperty(PropertyName = "type")]
         public string Type { get; set; }
 
@@ -12,5 +14,7 @@
 
         [JsonProperty(PropertyName = "properties")]
         public Properties Properties { get; set; }
+
+        #endregion
     }
 }

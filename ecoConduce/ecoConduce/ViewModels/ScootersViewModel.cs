@@ -1,5 +1,4 @@
-﻿
-namespace ecoConduce.ViewModels
+﻿namespace ecoConduce.ViewModels
 {
     using ecoConduce.Models;
     using ecoConduce.Services;
@@ -13,20 +12,25 @@ namespace ecoConduce.ViewModels
     public class ScootersViewModel : BaseViewModel
     {
         #region services
+
         private ApiService apiService;
         private string latitud;
         private string longitud;
+
         #endregion
 
-        #region attributes
+        #region Attributes
+
         private ObservableCollection<ScooterItemViewModel> scooters;
         private List<Scooter> scooterList;
         private bool isRefreshing;
         private string order;
         private List<Scooter> resp;
+
         #endregion
 
-        #region properties
+        #region Properties
+
         public ObservableCollection<ScooterItemViewModel> Scooters
         {
             get { return this.scooters; }
@@ -50,9 +54,11 @@ namespace ecoConduce.ViewModels
             get { return this.resp; }
             set { SetValue(ref this.resp, value); }
         }
+
         #endregion
 
-        #region constructors
+        #region Constructors
+
         public ScootersViewModel(string lt, string lg)
         {
             this.latitud = lt;
@@ -63,7 +69,7 @@ namespace ecoConduce.ViewModels
 
         #endregion
 
-        #region MyRegion
+        #region Methods
 
         private async void LoadScooters()
         {
@@ -114,7 +120,6 @@ namespace ecoConduce.ViewModels
             this.IsRefreshing = false;
         }
 
-
         private void OrderBy()
         {
             this.IsRefreshing = true;
@@ -144,6 +149,16 @@ namespace ecoConduce.ViewModels
             this.IsRefreshing = false;
         }
 
+        private IEnumerable<ScooterItemViewModel> ToLanItemViewModel()
+        {
+            return this.scooterList.Select(l => new ScooterItemViewModel
+            {
+                Type = l.Type,
+                Properties = l.Properties,
+                Geometry = l.Geometry,
+            });
+        }
+
         #endregion
 
         #region commands
@@ -166,18 +181,5 @@ namespace ecoConduce.ViewModels
 
         #endregion
 
-        #region Methods
-
-        private IEnumerable<ScooterItemViewModel> ToLanItemViewModel()
-        {
-            return this.scooterList.Select(l => new ScooterItemViewModel
-            {
-                Type = l.Type,
-                Properties = l.Properties,
-                Geometry = l.Geometry,
-            });
-        }
-
-        #endregion
     }
 }
